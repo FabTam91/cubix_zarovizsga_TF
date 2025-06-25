@@ -4,28 +4,26 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET", "POST"])
 def calculator():
-    result = None
+    expression = ""
+    result = ""
+    
     if request.method == "POST":
-        try:
-            num1 = float(request.form["num1"])
-            num2 = float(request.form["num2"])
-            operation = request.form["operation"]
+        expression = request.form["expression"]
+        button = request.form["button"]
+        
+        if button == "C":
+            expression = ""
+        elif button == "=":
+            try:
+                result = str(eval(expression))
+                expression = result
+            except Exception:
+                result = "Hiba"
+                expression = "Hiba"
+        else:
+            expression += button
 
-            if operation == "add":
-                result = num1 + num2
-            elif operation == "subtract":
-                result = num1 - num2
-            elif operation == "multiply":
-                result = num1 * num2
-            elif operation == "divide":
-                if num2 == 0:
-                    result = "Hiba: nullával való osztás!"
-                else:
-                    result = num1 / num2
-        except ValueError:
-            result = "Hiba: csak számokat adj meg!"
-
-    return render_template("index.html", result=result)
+    return render_template("index.html", expression=expression)
 
 if __name__ == "__main__":
     app.run(debug=True)
