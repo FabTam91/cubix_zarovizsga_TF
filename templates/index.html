@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>Számológép</title>
+  <style>
+    body { font-family: Arial; padding: 20px; max-width: 500px; margin: auto; }
+    input[type="number"] { width: 100px; }
+    .result { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Egyszerű Számológép</h1>
+  <form method="post">
+    <input type="number" name="num1" step="any" required> 
+    <select name="operation">
+      <option value="add">+</option>
+      <option value="subtract">−</option>
+      <option value="multiply">×</option>
+      <option value="divide">÷</option>
+    </select>
+    <input type="number" name="num2" step="any" required>
+    <button type="submit">Számol</button>
+  </form>
+
+  {% if result is not none %}
+    <div class="result">Eredmény: {{ result }}</div>
+  {% endif %}
+</body>
+</html>
