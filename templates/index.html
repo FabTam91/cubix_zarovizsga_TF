@@ -1,30 +1,113 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="hu">
 <head>
   <meta charset="UTF-8">
   <title>Számológép</title>
   <style>
-    body { font-family: Arial; padding: 20px; max-width: 500px; margin: auto; }
-    input[type="number"] { width: 100px; }
-    .result { margin-top: 20px; font-weight: bold; }
+    body {
+      font-family: Arial;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f2f2f2;
+    }
+
+    .calculator {
+      background-color: #202020;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 20px #888;
+    }
+
+    .display {
+      width: 100%;
+      height: 60px;
+      margin-bottom: 15px;
+      font-size: 24px;
+      text-align: right;
+      padding: 10px;
+      border: none;
+      background-color: #303030;
+      color: white;
+      border-radius: 5px;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 60px);
+      gap: 10px;
+    }
+
+    button {
+      height: 60px;
+      font-size: 22px;
+      border: none;
+      border-radius: 5px;
+      background-color: #505050;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #707070;
+    }
+
+    .operator {
+      background-color: #fe9505;
+    }
+
+    .operator:hover {
+      background-color: #fba23c;
+    }
+
+    .equal {
+      background-color: #2e8b57;
+    }
+
+    .equal:hover {
+      background-color: #3cb371;
+    }
+
+    .clear {
+      background-color: #c0392b;
+    }
+
+    .clear:hover {
+      background-color: #e74c3c;
+    }
   </style>
 </head>
 <body>
-  <h1>Egyszerű Számológép</h1>
-  <form method="post">
-    <input type="number" name="num1" step="any" required> 
-    <select name="operation">
-      <option value="add">+</option>
-      <option value="subtract">−</option>
-      <option value="multiply">×</option>
-      <option value="divide">÷</option>
-    </select>
-    <input type="number" name="num2" step="any" required>
-    <button type="submit">Számol</button>
-  </form>
+  <form method="POST">
+    <div class="calculator">
+      <input type="text" class="display" name="expression" value="{{ expression }}" readonly>
 
-  {% if result is not none %}
-    <div class="result">Eredmény: {{ result }}</div>
-  {% endif %}
+      <div class="buttons">
+        <button name="button" value="7">7</button>
+        <button name="button" value="8">8</button>
+        <button name="button" value="9">9</button>
+        <button name="button" value="/" class="operator">÷</button>
+
+        <button name="button" value="4">4</button>
+        <button name="button" value="5">5</button>
+        <button name="button" value="6">6</button>
+        <button name="button" value="*" class="operator">×</button>
+
+        <button name="button" value="1">1</button>
+        <button name="button" value="2">2</button>
+        <button name="button" value="3">3</button>
+        <button name="button" value="-" class="operator">−</button>
+
+        <button name="button" value="0">0</button>
+        <button name="button" value=".">.</button>
+        <button name="button" value="=" class="equal">=</button>
+        <button name="button" value="+" class="operator">+</button>
+
+        <button name="button" value="C" class="clear" style="grid-column: span 4;">C</button>
+      </div>
+    </div>
+  </form>
 </body>
 </html>
