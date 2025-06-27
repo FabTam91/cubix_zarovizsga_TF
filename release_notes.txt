@@ -1,0 +1,5 @@
+Version: 1.0.2
+Date: 27/06/2025
+Implemented tasks:
+- Implement the whole calculator
+- Updated frontend

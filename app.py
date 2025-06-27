@@ -2,15 +2,16 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+
 @app.route("/", methods=["GET", "POST"])
 def calculator():
     expression = ""
     result = ""
-    
+
     if request.method == "POST":
         expression = request.form["expression"]
         button = request.form["button"]
-        
+
         if button == "C":
             expression = ""
         elif button == "=":
@@ -24,6 +25,7 @@ def calculator():
             expression += button
 
     return render_template("index.html", expression=expression)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
